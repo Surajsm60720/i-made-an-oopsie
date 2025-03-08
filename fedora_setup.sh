@@ -60,25 +60,36 @@ done
 # Install software from GitHub repositories
 echo "Installing software from GitHub repositories..."
 GITHUB_REPOS=(
-    "https://github.com/josueBarretogit/manga-tui.git"
-    "https://github.com/pystardust/ani-cli.git"
-    "https://github.com/Beastwick18/nyaa.git"
-    "https://github.com/karlstav/cava.git"
-    "https://github.com/th-ch/youtube-music.git"
+    "https://github.com/josueBarretogit/manga-tui/releases/download/v0.6.0/manga-tui-0.6.0-x86_64-unknown-linux-gnu.tar.gz" #cd to Downloads/manga-tui folder then run ./manga-tui for the app to run
+    "https://github.com/Beastwick18/nyaa/releases/download/v0.9.1/nyaa-0.9.1-1.x86_64.rpm" #just run the nyaa command in the terminal
+    "https://github.com/th-ch/youtube-music/releases/download/v3.7.5/youtube-music-3.7.5.x86_64.rpm"
 )
 
 for REPO in "${GITHUB_REPOS[@]}"; do
-    git clone "$REPO" ~/Downloads/$(basename "$REPO" .git)
-    cd ~/Downloads/$(basename "$REPO" .git)
-    if [ -f "install.sh" ]; then
-        chmod +x install.sh
-        ./install.sh
-    elif [ -f "setup.sh" ]; then
-        chmod +x setup.sh
-        ./setup.sh
+    if [[ "$REPO" == *.rpm ]]; then
+        wget "$REPO" -P ~/Downloads/
+        sudo dnf install -y ~/Downloads/$(basename "$REPO")
+    else
+        git clone "$REPO" ~/Downloads/$(basename "$REPO" .git)
+        cd ~/Downloads/$(basename "$REPO" .git)
+        if [ -f "install.sh" ]; then
+            chmod +x install.sh
+            ./install.sh
+        elif [ -f "setup.sh" ]; then
+            chmod +x setup.sh
+            ./setup.sh
+        fi
+        cd ~
     fi
-    cd ~
 done
+
+# Install ani-cli and enter ani-cli to run the application
+echo "Installing ani-cli"
+sudo dnf copr enable derisis13/ani-cli -y && sudo dnf install ani-cli -y
+
+# Install the cava audio visualizer and enter the cava command in the terminal to run the application
+sudo dnf install cava -y
+
 
 # Install GNOME Shell extensions
 # echo "Installing GNOME Shell extensions..."
