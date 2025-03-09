@@ -50,15 +50,23 @@ FLATPAK_APPS=(
     "com.adobe.Reader"
     "com.spotify.Client"
     "com.discordapp.Discord"
-    # Zen browser
     "com.github.wwmm.easyeffects"
-    # Kitty terminal
     "org.nickvision.tubeconverter" # Parabolic
 )
 
 for APP in "${FLATPAK_APPS[@]}"; do
     flatpak install -y flathub "$APP"
 done
+
+# Install kitty terminal
+echo "Installing kitty terminal..."
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+echo 'kitty.desktop' > ~/.config/xdg-terminals.list
 
 # Install software from GitHub repositories
 echo "Installing software from GitHub repositories..."
@@ -158,6 +166,12 @@ for DIR in ~/.local/share/gnome-shell/extensions/*/schemas; do
     fi
 done
 echo "GNOME Shell extensions compilation complete."
+
+# Installing additional components for the extensions
+echo "Installing additional components for the extensions..."
+sudo dnf install nethogs -y
+sudo dnf install iotop -y
+sudo dnf install openssl -y
 
 # Prompt user for reboot
 echo "System setup is complete. It is recommended to reboot now."
