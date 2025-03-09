@@ -37,6 +37,9 @@ flatpak install -y flathub com.mattjakeman.ExtensionManager
 echo "Installing multimedia and utility packages..."
 sudo dnf install -y mpv vlc unrar unzip python3-pip cargo p7zip ntfs-3g gedit
 
+#Install fastfetch, the neofetch alternative
+echo "Installing fastfetch..."
+sudo dnf install fastfetch -y #run fastfetch in the terminal to see the system information
 
 # Install software from GNOME Software Center
 echo "Installing software from GNOME Software Center..."
@@ -62,7 +65,7 @@ echo "Installing software from GitHub repositories..."
 GITHUB_REPOS=(
     "https://github.com/josueBarretogit/manga-tui/releases/download/v0.6.0/manga-tui-0.6.0-x86_64-unknown-linux-gnu.tar.gz" #cd to Downloads/manga-tui folder then run ./manga-tui for the app to run
     "https://github.com/Beastwick18/nyaa/releases/download/v0.9.1/nyaa-0.9.1-1.x86_64.rpm" #just run the nyaa command in the terminal
-    "https://github.com/th-ch/youtube-music/releases/download/v3.7.5/youtube-music-3.7.5.x86_64.rpm"
+    "https://github.com/th-ch/youtube-music/releases/download/v3.7.5/youtube-music-3.7.5.x86_64.rpm" #Installs the youtube music mod
 )
 
 for REPO in "${GITHUB_REPOS[@]}"; do
@@ -84,39 +87,51 @@ for REPO in "${GITHUB_REPOS[@]}"; do
 done
 
 # Install ani-cli and enter ani-cli to run the application
-echo "Installing ani-cli"
+echo "Installing ani-cli..."
 sudo dnf copr enable derisis13/ani-cli -y && sudo dnf install ani-cli -y
 
 # Install the cava audio visualizer and enter the cava command in the terminal to run the application
+echo "Installing cava audio visualizer..."
 sudo dnf install cava -y
 
+# Install GNOME Shell extensions using gnome-shell-extension-installer
+echo "Installing GNOME Shell extensions..."
+curl -sSL "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer" -o /usr/local/bin/gnome-shell-extension-installer
+chmod +x /usr/local/bin/gnome-shell-extension-installer
 
-# Install GNOME Shell extensions
-# echo "Installing GNOME Shell extensions..."
-# EXTENSIONS=(
-    # "user-themes@gnome-shell-extensions.gcampax.github.com"
-    # "caffeine@patapon.info"
-    # "astra-monitor@evermiss.net"
-    # "quick-settings-tweaker@qwreey"
-    # "privacy-quick-settings@privacy"
-    # "logo-menu@carlos-ramirez"
-    # "blur-my-shell@aunetx"
-    # "wiggle@unredactor"
-    # "impatience@gfxmonk.net"
-    # "dash-to-dock@micxgx.gmail.com"
-    # "coverflow-alt-tab@palatis.github.com"
-    # "compiz-alike-magic-lamp-effect@hermes83"
-    # "desktop-cube@zhanghai"
-    # "fuzzy-app-search@yourusername"
-    # "gsconnect@andyholmes.github.io"
-    # "media-controls@cliffniff.github.io"
-    # "search-light@user-extensions"
-# )
+EXTENSION_IDS=(
+    19   # User Themes
+    517  # Caffeine
+    6682 # Astra Monitor
+    5446 # Quick Settings Tweaker
+    4491 # Privacy Quick Settings
+    4451 # Logo Menu
+    3193 # Blur My Shell
+    6784 # Wiggle
+    277  # Impatience
+    307  # Dash to Dock
+    97   # Coverflow Alt-Tab
+    3740 # Compiz Alike Magic Lamp Effect
+    4648 # Desktop Cube
+    3956 # Fuzzy App Search
+    1319 # GSConnect
+    4470 # Media Controls
+    5489 # Search Light
+)
 
-# for EXT in "${EXTENSIONS[@]}"; do
-    # gnome-extensions install "https://extensions.gnome.org/extension-data/$EXT.zip"
-    # gnome-extensions enable "$EXT"
-# done
+for EXT_ID in "${EXTENSION_IDS[@]}"; do
+    gnome-shell-extension-installer "$EXT_ID" --yes
+done
+echo "GNOME Shell extensions installation complete."
+
+# Compile schemas for installed GNOME extensions
+echo "Compiling schemas for installed GNOME extensions..."
+for DIR in ~/.local/share/gnome-shell/extensions/*/schemas; do
+    if [ -d "$DIR" ]; then
+        glib-compile-schemas "$DIR"
+    fi
+done
+echo "GNOME Shell extensions compilation complete."
 
 # Prompt user for reboot
 echo "System setup is complete. It is recommended to reboot now."
