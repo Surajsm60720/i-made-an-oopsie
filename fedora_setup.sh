@@ -99,6 +99,32 @@ echo "Installing GNOME Shell extensions..."
 curl -sSL "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer" -o /usr/local/bin/gnome-shell-extension-installer
 chmod +x /usr/local/bin/gnome-shell-extension-installer
 
+echo "The following GNOME Shell extensions will be installed:"
+echo "1. User Themes"
+echo "2. Caffeine"
+echo "3. Astra Monitor"
+echo "4. Quick Settings Tweaker"
+echo "5. Privacy Quick Settings"
+echo "6. Logo Menu"
+echo "7. Blur My Shell"
+echo "8. Wiggle"
+echo "9. Impatience"
+echo "10. Dash to Dock"
+echo "11. Coverflow Alt-Tab"
+echo "12. Compiz Alike Magic Lamp Effect"
+echo "13. Desktop Cube"
+echo "14. Fuzzy App Search"
+echo "15. GSConnect"
+echo "16. Media Controls"
+echo "17. Search Light" 
+
+echo "Do you want to continue with the installation of these extensions? (y/N): "
+read -r response
+if [[ ! "$response" =~ ^[Yy]$ ]]; then
+    echo "GNOME Shell extensions installation skipped."
+    exit
+fi
+
 EXTENSION_IDS=(
     19   # User Themes
     517  # Caffeine
