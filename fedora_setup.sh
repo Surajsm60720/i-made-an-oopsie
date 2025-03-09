@@ -61,6 +61,7 @@ done
 # Install kitty terminal
 echo "Installing kitty terminal..."
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+mkdir ~/.local/bin
 ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
 cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
 cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
