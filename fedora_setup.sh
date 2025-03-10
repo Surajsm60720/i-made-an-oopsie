@@ -174,12 +174,21 @@ sudo dnf install nethogs -y
 sudo dnf install iotop -y
 sudo dnf install openssl -y
 
+# Installing oh-my-zsh
+# Check out https://github.com/novaspirit/pimpyourterm for any queries
+echo "Installing oh-my-zsh..."
+sudo dnf install zsh -y
+chsh -s $(which zsh)
+echo "Reopen the terminal to see the changes"
+echo "Press 0 and then 1"
+echo "Run the ./oh-my-zsh.sh script to install oh-my-zsh" 
+
 # Prompt user for reboot
-echo "System setup is complete. It is recommended to reboot now."
-read -p "Do you want to reboot now? (y/N): " response
+echo "System setup is complete. It is recommended to logout and login again to see the changes."
+read -p "Do you want to logout now? (y/N): " response
 if [[ "$response" =~ ^[Yy]$ ]]; then
-    echo "Rebooting now..."
-    sudo reboot
+    echo "Logging out now..."
+    gnome-session-quit --logout --no-prompt
 else
-    echo "Reboot skipped. Please reboot manually later for changes to take full effect."
+    echo "Logout skipped. Please logout and login manually later for changes to take full effect."
 fi
