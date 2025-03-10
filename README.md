@@ -117,3 +117,5 @@ Personally, I use the following,
 - Search Light
 
 And finally we have [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh), which helps in customizing your shell. 
+
+For any doubts regarding how to run some files or stuck anywhere, check the code comments :)
