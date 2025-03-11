@@ -54,23 +54,7 @@ And some more (read the utility packages part of the ./fedora-setup.sh file).
 ### Flatpak applications 
 
 Yes, I use flatpak to install some of the applications like, 
-echo "1. 
-echo "2. 
-echo "3. 
-echo "4. 
-echo "5. 
-echo "6. 
-echo "7. 
-echo "8. 
-echo "9. 
-echo "10.
-echo "11.
-echo "12.
-echo "13.
-echo "14.
-echo "15.
-echo "16.
-echo "17.
+
 - Chrome
 - VS Code
 - Handbrake (video and audio encoder type app)
