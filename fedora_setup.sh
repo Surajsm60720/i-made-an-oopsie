@@ -45,7 +45,6 @@ sudo dnf install fastfetch -y #run fastfetch in the terminal to see the system i
 echo "Installing software from GNOME Software Center..."
 FLATPAK_APPS=(
     "com.google.Chrome"
-    "com.visualstudio.code"
     "fr.handbrake.ghb"
     "com.adobe.Reader"
     "com.spotify.Client"
@@ -57,6 +56,13 @@ FLATPAK_APPS=(
 for APP in "${FLATPAK_APPS[@]}"; do
     flatpak install -y flathub "$APP"
 done
+
+# Install VS Code using RPM package
+echo "Installing Visual Studio Code..."
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+dnf check-update
+sudo dnf install code # or code-insiders
 
 # Install kitty terminal
 echo "Installing kitty terminal..."

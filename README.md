@@ -56,7 +56,6 @@ And some more (read the utility packages part of the ./fedora-setup.sh file).
 Yes, I use flatpak to install some of the applications like, 
 
 - Chrome
-- VS Code
 - Handbrake (video and audio encoder type app)
 - Spotify
 - Discord
@@ -64,7 +63,8 @@ Yes, I use flatpak to install some of the applications like,
 - Easy Effects (better audio output with plugins)
 - Parabolic (abslute chad video downloader)
 
-Kitty terminal installation is done seperately by another set of commands.
+Kitty terminal installation is done seperately by another set of commands.<br>
+VS Code is installed using the RPM package because Flatpak has issues with zsh.
 
 ### Github repos 
 
