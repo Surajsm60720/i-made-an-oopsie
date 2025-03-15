@@ -63,8 +63,9 @@ Yes, I use flatpak to install some of the applications like,
 - Easy Effects (better audio output with plugins)
 - Parabolic (abslute chad video downloader)
 
+VS Code is installed using the RPM package because Flatpak has issues with zsh.<br>
 Kitty terminal installation is done seperately by another set of commands.<br>
-VS Code is installed using the RPM package because Flatpak has issues with zsh.
+Docker is also installed using their respective commands and packages.
 
 ### Github repos 
 
