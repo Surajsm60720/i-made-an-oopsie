@@ -75,6 +75,15 @@ sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/
 sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
 echo 'kitty.desktop' > ~/.config/xdg-terminals.list
 
+# Install Docker and Docker Compose
+echo "Installing Docker and Docker Compose..."
+sudo dnf -y install dnf-plugins-core
+sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl enable --now docker
+echo "Docker and Docker Compose installation complete."
+# Run sudo docker run hello-world to verify the installation
+
 # Install software from GitHub repositories
 echo "Installing software from GitHub repositories..."
 GITHUB_REPOS=(
