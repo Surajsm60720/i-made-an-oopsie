@@ -84,6 +84,12 @@ sudo systemctl enable --now docker
 echo "Docker and Docker Compose installation complete."
 # Run sudo docker run hello-world to verify the installation
 
+# Install Latex components and dependencies
+echo "Installing Latex components and dependencies..."
+sudo dnf install latexmk latexindent synctex chktex -y
+sudo dnf install texlive-collection-latex texlive-collection-latexrecommended texlive-collection-latexextra texlive-collection-fontsrecommended texlive-collection-fontsextra texlive-collection-langenglish texlive-collection-langgerman texlive-collection-langfrench texlive-collection-langspanish texlive-collection-langportuguese texlive-collection-langitalian texlive-collection-langcjk
+echo "Latex components and dependencies installation complete."
+    
 # Install software from GitHub repositories
 echo "Installing software from GitHub repositories..."
 GITHUB_REPOS=(

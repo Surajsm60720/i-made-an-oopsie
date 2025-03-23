@@ -65,7 +65,8 @@ Yes, I use flatpak to install some of the applications like,
 
 VS Code is installed using the RPM package because Flatpak has issues with zsh.<br>
 Kitty terminal installation is done seperately by another set of commands.<br>
-Docker is also installed using their respective commands and packages.
+Docker is also installed using their respective commands and packages.<br>
+LaTex components and dependencies are installed too.
 
 ### Github repos 
 
