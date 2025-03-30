@@ -13,11 +13,13 @@ Why I made it you ask? Well, I am prone to making my Linux system go down the dr
 
 2. Run the fedora-setup script:
    ```bash
+   chmod +x ./fedora-setup.sh
    ./fedora-setup.sh
    ```
    If you downloaded the file, then:
    ```bash
    cd Downloads/i-made-an-oopsie
+   chmod +x ./fedora-setup.sh
    ./fedora-setup.sh
    ```
 
