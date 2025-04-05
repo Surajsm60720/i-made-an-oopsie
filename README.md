@@ -61,7 +61,6 @@ Yes, I use flatpak to install some of the applications like,
 - Handbrake (video and audio encoder type app)
 - Spotify
 - Discord
-- Adobe Reader (very old ver.)
 - Easy Effects (better audio output with plugins)
 - Parabolic (abslute chad video downloader)
 

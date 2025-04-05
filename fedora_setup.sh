@@ -46,7 +46,6 @@ echo "Installing software from GNOME Software Center..."
 FLATPAK_APPS=(
     "com.google.Chrome"
     "fr.handbrake.ghb"
-    "com.adobe.Reader"
     "com.spotify.Client"
     "com.discordapp.Discord"
     "com.github.wwmm.easyeffects"
@@ -93,9 +92,9 @@ echo "Latex components and dependencies installation complete."
 # Install software from GitHub repositories
 echo "Installing software from GitHub repositories..."
 GITHUB_REPOS=(
-    "https://github.com/josueBarretogit/manga-tui/releases/download/v0.6.0/manga-tui-0.6.0-x86_64-unknown-linux-gnu.tar.gz" #cd to Downloads/manga-tui folder then run ./manga-tui for the app to run
+    "https://github.com/josueBarretogit/manga-tui/releases/download/v0.7.0/manga-tui-0.7.0-x86_64-unknown-linux-gnu.tar.gz" #cd to Downloads/manga-tui folder then run ./manga-tui for the app to run
     "https://github.com/Beastwick18/nyaa/releases/download/v0.9.1/nyaa-0.9.1-1.x86_64.rpm" #just run the nyaa command in the terminal
-    "https://github.com/th-ch/youtube-music/releases/download/v3.7.5/youtube-music-3.7.5.x86_64.rpm" #Installs the youtube music mod
+    "https://github.com/th-ch/youtube-music/releases/download/v3.8.0/youtube-music-3.8.0.x86_64.rpm" #Installs the youtube music mod
 )
 
 for REPO in "${GITHUB_REPOS[@]}"; do
