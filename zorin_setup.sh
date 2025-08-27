@@ -6,11 +6,11 @@ sudo apt update -y && sudo apt upgrade -y
 
 # Install essential tools
 echo "Installing essential tools..."
-sudo apt install -y gnome-tweaks timeshift
+sudo apt install -y gnome-tweaks timeshift git
 
 # Refresh system upgrades
 echo "Refreshing system upgrades..."
-sudo dnf upgrade --refresh -y
+sudo apt upgrade --refresh -y
 
 # Install Flatpak Extension Manager
 echo "Installing Flatpak Extension Manager..."
@@ -96,56 +96,48 @@ for REPO in "${GITHUB_REPOS[@]}"; do
     fi
 done
 
-# Install GNOME Shell extensions using gnome-shell-extension-installer
-echo "Installing GNOME Shell extensions..."
-curl -sSL "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer" -o /usr/local/bin/gnome-shell-extension-installer
-chmod +x /usr/local/bin/gnome-shell-extension-installer
+# # Install GNOME Shell extensions using gnome-shell-extension-installer
+# echo "Installing GNOME Shell extensions..."
+# curl -sSL "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer" -o /usr/local/bin/gnome-shell-extension-installer
+# chmod +x /usr/local/bin/gnome-shell-extension-installer
 
-echo "The following GNOME Shell extensions will be installed:"
-echo "2. Caffeine"
-echo "4. Quick Settings Tweaker"
-echo "5. Privacy Quick Settings"
-echo "7. Blur My Shell"
-echo "9. Impatience"
-echo "12. Compiz Alike Magic Lamp Effect"
-echo "14. Fuzzy App Search"
-echo "15. GSConnect"
-echo "17. Search Light" 
+# echo "The following GNOME Shell extensions will be installed:"
+# echo "4. Quick Settings Tweaker"
+# echo "5. Privacy Quick Settings"
+# echo "14. Fuzzy App Search"
+# echo "15. GSConnect"
+# echo "17. Search Light" 
 
-echo "Do you want to continue with the installation of these extensions? (y/N): "
-read -r response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-    echo "GNOME Shell extensions installation skipped."
-    exit
-fi
+# echo "Do you want to continue with the installation of these extensions? (y/N): "
+# read -r response
+# if [[ ! "$response" =~ ^[Yy]$ ]]; then
+#     echo "GNOME Shell extensions installation skipped."
+#     exit
+# fi
 
-EXTENSION_IDS=(
-    517  # Caffeine
-    5446 # Quick Settings Tweaker
-    4491 # Privacy Quick Settings
-    3193 # Blur My Shell
-    277  # Impatience
-    3740 # Compiz Alike Magic Lamp Effect
-    3956 # Fuzzy App Search
-    1319 # GSConnect
-    5489 # Search Light
-)
+# EXTENSION_IDS=(
+#     5446 # Quick Settings Tweaker
+#     4491 # Privacy Quick Settings
+#     3956 # Fuzzy App Search
+#     1319 # GSConnect
+#     5489 # Search Light
+# )
 
-for EXT_ID in "${EXTENSION_IDS[@]}"; do
-    gnome-shell-extension-installer "$EXT_ID" --yes
-done
-echo "GNOME Shell extensions installation complete."
+# for EXT_ID in "${EXTENSION_IDS[@]}"; do
+#     gnome-shell-extension-installer "$EXT_ID" --yes
+# done
+# echo "GNOME Shell extensions installation complete."
 
-# Compile schemas for installed GNOME extensions
-echo "Compiling schemas for installed GNOME extensions..."
-for DIR in ~/.local/share/gnome-shell/extensions/*/schemas; do
-    if [ -d "$DIR" ]; then
-        glib-compile-schemas "$DIR"
-    fi
-done
-echo "GNOME Shell extensions compilation complete."
+# # Compile schemas for installed GNOME extensions
+# echo "Compiling schemas for installed GNOME extensions..."
+# for DIR in ~/.local/share/gnome-shell/extensions/*/schemas; do
+#     if [ -d "$DIR" ]; then
+#         glib-compile-schemas "$DIR"
+#     fi
+# done
+# echo "GNOME Shell extensions compilation complete."
 
-# Installing additional components for the extensions
+# # Installing additional components for the extensions
 echo "Installing additional components for the extensions..."
 sudo apt install nethogs -y
 sudo apt install iotop -y
@@ -154,3 +146,7 @@ sudo apt install htop -y
 
 # VS Code can be installed using the official website .deb package
 # Zen browser too can be installed from the official website
+# For brave browser gesture navigations, cd /usr/share/applications/brave-browser.desktop
+# go to the exec= line that has %U at the end and replace that line with this
+# Exec=/usr/bin/brave-browser-stable --enable-features=TouchpadOverscrollHistoryNavigation,UseOzonePlatform --ozone-platform=wayland
+# then ctrl+o enter ctrl+x
