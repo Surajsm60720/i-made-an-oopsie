@@ -150,3 +150,5 @@ sudo apt install htop -y
 # go to the exec= line that has %U at the end and replace that line with this
 # Exec=/usr/bin/brave-browser-stable --enable-features=TouchpadOverscrollHistoryNavigation,UseOzonePlatform --ozone-platform=wayland
 # then ctrl+o enter ctrl+x
+# go to the CLI in VS Code and to any repo and type git config user.name "Your Name"
+# then git config user.email "you@example.com"
