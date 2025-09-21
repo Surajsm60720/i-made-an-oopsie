@@ -40,6 +40,15 @@ sudo apt install -y preload
 echo "Installing tlp..."
 sudo apt install -y tlp
 
+# Install LaTeX packages
+echo "Installing LaTeX packages..."
+sudo apt install latexmk chktex -y
+sudo apt install texlive -y
+sudo apt-get install texlive-latex-extra -y
+sudo apt-get install texlive-bibtex-extra -y
+sudo apt-get install texlive-bibtex-extra biber -y
+sudo apt-get install texlive-fonts-extra -y
+
 # Install software from GNOME Software Center
 echo "Installing software from GNOME Software Center..."
 FLATPAK_APPS=(
